@@ -1,5 +1,6 @@
 const express = require("express");
 const { connectDB } = require("./connections");
+const redirect = require("./routes/redirect");
 const shorten = require("./routes/shorten");
 require("dotenv").config();
 
@@ -14,3 +15,4 @@ app.listen(PORT, () => {
 });
 app.use(express.json());
 app.use("/shorten/", shorten);
+app.use("/",redirect);

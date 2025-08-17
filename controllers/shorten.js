@@ -16,9 +16,6 @@ async function handleUrlShortening(req, res) {
   return res.json({ id: shortId });
 }
 
-
-
-
 module.exports = {
-    handleUrlShortening
+  handleUrlShortening,
 };

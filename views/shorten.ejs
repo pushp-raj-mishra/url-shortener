@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shorten url</title>
+</head>
+<body>
+    <h1>Shorten Your URL</h1>
+    <form method="post" action="/shorten">
+        <input type="text" name="url" placeholder="https://example.com">
+        <button type="submit">Generate URL</button>
+    </form>
+    <% if (generatedURL) { %>
+     <h4>Generated URL: <%=generatedURL%></h4>
+    <% } %>
+    
+</body>
+</html>

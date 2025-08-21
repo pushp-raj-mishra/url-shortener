@@ -1,6 +1,10 @@
 const shortURl = require("../models/shorten.js");
 const { nanoid } = require("nanoid");
 
+function handleGetRequest(req, res) {
+  res.render("shorten", { generatedURL: null });
+}
+
 async function handleUrlShortening(req, res) {
   const body = req.body;
   if (!body.url) {
@@ -13,9 +17,10 @@ async function handleUrlShortening(req, res) {
     originalID: body.url,
     visitHistory: [],
   });
-  return res.json({ id: shortId });
+  res.render("shorten", { generatedURL: shortId });
 }
 
 module.exports = {
   handleUrlShortening,
+  handleGetRequest,
 };

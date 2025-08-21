@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+  </head>
+  <body>
+    Below are the urls on the database.
+    <ul>
+      <% urls.forEach(url => { %>
+      <li><%= url.shortID %> -> <%= url.originalID %> -> <%= url.visitHistory.length %></li>
+      <%}); %>
+    </ul>
+  </body>
+</html>

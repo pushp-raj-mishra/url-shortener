@@ -6,11 +6,27 @@
     <title>Home</title>
   </head>
   <body>
-    Below are the urls on the database.
-    <ul>
+    <h1>Shorten Your URL</h1>
+    <form method="post" action="/home">
+      <input type="text" name="url" placeholder="https://example.com" />
+      <button type="submit">Generate URL</button>
+    </form>
+    <% if (generatedURL) { %>
+    <h4>Generated URL: http://localhost:3000/<%=generatedURL%></h4>
+    <% } %> Below are the urls on the database.
+    <table border="2px solid black">
+      <tr>
+        <th>ShortId</th>
+        <th>originalID</th>
+        <th>Visit Count</th>
+      </tr>
       <% urls.forEach(url => { %>
-      <li><%= url.shortID %> -> <%= url.originalID %> -> <%= url.visitHistory.length %></li>
+      <tr>
+        <td><%= url.shortID %></td>
+        <td><%= url.originalID %></td>
+        <td><%= url.visitHistory.length %></td>
+      </tr>
       <%}); %>
-    </ul>
+    </table>
   </body>
 </html>

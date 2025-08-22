@@ -1,9 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const {handleGetRequest} = require('../controllers/home')
+const {
+  handleGetRequest,
+  handleUrlShortening,
+} = require("../controllers/home");
 
-router.route('/')
-    .get(handleGetRequest)
-
+router.route("/").get(handleGetRequest).post(handleUrlShortening);
 
 module.exports = router;

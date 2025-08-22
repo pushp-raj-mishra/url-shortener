@@ -1,7 +1,6 @@
 const express = require("express");
 const { connectDB } = require("./connections");
 const redirect = require("./routes/redirect");
-const shorten = require("./routes/shorten");
 const shortURL = require("./models/shorten");
 const path = require("path");
 const staticRouter = require("./routes/staticRouter");
@@ -23,7 +22,6 @@ app.set("views", path.resolve("./views"));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use("/shorten/", shorten);
 app.use("/static/", staticRouter);
 app.use("/home", home);
 app.use("/", redirect);

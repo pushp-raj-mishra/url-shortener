@@ -1,8 +1,9 @@
 const shortURl = require("../models/shorten.js");
+const User = require("../models/user.js");
 const { nanoid } = require("nanoid");
 
 async function handleGetRequest(req, res) {
-  const urls = await shortURl.find();
+  const urls = await shortURl.find({createdBy:req.user._id});
   res.render("home", { urls, generatedURL: null });
 }
 
@@ -17,8 +18,9 @@ async function handleUrlShortening(req, res) {
     shortID: shortId,
     originalID: body.url,
     visitHistory: [],
+    createdBy: req.user._id,
   });
-  const urls = await shortURl.find();
+  const urls = await shortURl.find({ createdBy: req.user._id });
   res.render("home", { urls, generatedURL: shortId });
 }
 

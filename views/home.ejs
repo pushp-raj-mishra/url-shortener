@@ -20,13 +20,13 @@
         <th>originalID</th>
         <th>Visit Count</th>
       </tr>
-      <% urls.forEach(url => { %>
+      <% if (urls) { %> <% urls.forEach(url => { %>
       <tr>
         <td><%= url.shortID %></td>
         <td><%= url.originalID %></td>
         <td><%= url.visitHistory.length %></td>
       </tr>
-      <%}); %>
+      <%}); %> <% } %>
     </table>
   </body>
 </html>

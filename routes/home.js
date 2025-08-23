@@ -5,6 +5,7 @@ const {
   handleUrlShortening,
 } = require("../controllers/home");
 
+
 router.route("/").get(handleGetRequest).post(handleUrlShortening);
 
 module.exports = router;

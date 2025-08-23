@@ -3,18 +3,108 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Signup</title>
+    <title>Signup - Chhotu</title>
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
+    <link
+      rel="stylesheet"
+      as="style"
+      onload="this.rel='stylesheet'"
+      href="https://fonts.googleapis.com/css2?display=swap&family=Inter:wght@400;500;700;900&family=Noto+Sans:wght@400;500;700;900&display=swap"
+    />
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
   </head>
   <body>
-    <h1>Signup</h1>
-    <form method="post" action="/user">
-      <label>Name</label>
-      <input type="text" required name="name" />
-      <label>Email</label>
-      <input type="text" required name="email" />
-      <label>Password</label>
-      <input type="text" required name="password" />
-      <button type="submit" >Submit</button>
-    </form>
+    <div
+      class="relative flex size-full min-h-screen flex-col bg-white group/design-root overflow-x-hidden"
+      style="font-family: Inter, 'Noto Sans', sans-serif"
+    >
+      <div class="layout-container flex h-full grow flex-col">
+        <!-- Header from your very first home code -->
+        <header class="bg-white shadow-sm">
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+              <div class="flex items-center">
+                <span class="material-icons text-indigo-600 text-3xl"
+                  >link</span
+                >
+                <h1 class="ml-2 text-2xl font-bold text-gray-900">Chhotu</h1>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <!-- Signup Form -->
+        <div class="px-40 flex flex-1 justify-center py-5">
+          <div
+            class="layout-content-container flex flex-col w-[512px] max-w-[512px] py-5 max-w-[960px] flex-1"
+          >
+            <h2
+              class="text-[#111418] tracking-light text-[28px] font-bold leading-tight px-4 text-center pb-3 pt-5"
+            >
+              Sign up
+            </h2>
+
+            <form method="post" action="/user">
+              <div
+                class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3"
+              >
+                <label class="flex flex-col min-w-40 flex-1">
+                  <input
+                    type="text"
+                    name="name"
+                    required
+                    placeholder="Name"
+                    class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#111418] focus:outline-0 focus:ring-0 border-none bg-[#f0f2f5] h-14 placeholder:text-[#60758a] p-4 text-base font-normal leading-normal"
+                  />
+                </label>
+              </div>
+
+              <div
+                class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3"
+              >
+                <label class="flex flex-col min-w-40 flex-1">
+                  <input
+                    type="email"
+                    name="email"
+                    required
+                    placeholder="Email"
+                    class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#111418] focus:outline-0 focus:ring-0 border-none bg-[#f0f2f5] h-14 placeholder:text-[#60758a] p-4 text-base font-normal leading-normal"
+                  />
+                </label>
+              </div>
+
+              <div
+                class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3"
+              >
+                <label class="flex flex-col min-w-40 flex-1">
+                  <input
+                    type="password"
+                    name="password"
+                    required
+                    placeholder="Password"
+                    class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#111418] focus:outline-0 focus:ring-0 border-none bg-[#f0f2f5] h-14 placeholder:text-[#60758a] p-4 text-base font-normal leading-normal"
+                  />
+                </label>
+              </div>
+
+              <div class="flex px-4 py-3">
+                <button
+                  type="submit"
+                  class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 flex-1 bg-[#0d80f2] text-white text-sm font-bold leading-normal tracking-[0.015em]"
+                >
+                  <span class="truncate">Sign up</span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

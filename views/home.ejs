@@ -1,32 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home</title>
-  </head>
-  <body>
-    <h1>Shorten Your URL</h1>
-    <form method="post" action="/home">
-      <input type="text" name="url" placeholder="https://example.com" />
-      <button type="submit">Generate URL</button>
-    </form>
-    <% if (generatedURL) { %>
-    <h4>Generated URL: http://localhost:3000/<%=generatedURL%></h4>
-    <% } %> Below are the urls on the database.
-    <table border="2px solid black">
-      <tr>
-        <th>ShortId</th>
-        <th>originalID</th>
-        <th>Visit Count</th>
-      </tr>
-      <% if (urls) { %> <% urls.forEach(url => { %>
-      <tr>
-        <td><%= url.shortID %></td>
-        <td><%= url.originalID %></td>
-        <td><%= url.visitHistory.length %></td>
-      </tr>
-      <%}); %> <% } %>
-    </table>
-  </body>
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chhotu - URL Shortener</title>
+
+  <!-- Tailwind + Fonts -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+
+  <style type="text/tailwindcss">
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+<div class="min-h-screen flex flex-col">
+
+  <!-- Header -->
+  <header class="bg-white shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center py-4">
+        <div class="flex items-center">
+          <span class="material-icons text-indigo-600 text-3xl">link</span>
+          <h1 class="ml-2 text-2xl font-bold text-gray-900">Chhotu</h1>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main class="flex-grow">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+      <!-- Heading -->
+      <div class="text-center mb-12">
+        <h2 class="text-4xl md:text-5xl font-extrabold text-gray-900">Shorten Your URL</h2>
+        <p class="mt-4 text-lg text-gray-600">A simpler way to share your links.</p>
+      </div>
+
+      <!-- URL Shortener Form -->
+      <div class="bg-white p-8 rounded-lg shadow-lg max-w-3xl mx-auto">
+        <form method="POST" action="/home">
+          <div class="flex flex-col sm:flex-row gap-4">
+            <input 
+              type="text"
+              name="url"
+              placeholder="https://example.com"
+              required
+              class="flex-grow w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
+            />
+            <button 
+              type="submit"
+              class="w-full sm:w-auto bg-indigo-600 text-white px-6 py-3 rounded-md font-semibold hover:bg-indigo-700 flex items-center justify-center"
+            >
+              <span class="material-icons mr-2">content_cut</span>
+              <span>Generate URL</span>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Show generated URL -->
+      <% if (generatedURL) { %>
+        <div class="mt-6 text-center">
+          <h4 class="text-lg font-semibold text-gray-900">
+            Generated URL: 
+            <a href="http://localhost:3000/<%= generatedURL %>" 
+               class="text-indigo-600 hover:text-indigo-800">
+               http://localhost:3000/<%= generatedURL %>
+            </a>
+          </h4>
+        </div>
+      <% } %>
+
+      <!-- URL Table -->
+      <div class="mt-16">
+        <h3 class="text-2xl font-semibold text-gray-900 mb-6">Your Shortened URLs</h3>
+        <div class="bg-white shadow-md rounded-lg overflow-hidden">
+          <div class="overflow-x-auto">
+            <table class="w-full text-left">
+              <thead class="bg-gray-100">
+                <tr>
+                  <th class="px-6 py-4 text-sm font-medium text-gray-600 uppercase tracking-wider">Short ID</th>
+                  <th class="px-6 py-4 text-sm font-medium text-gray-600 uppercase tracking-wider">Original URL</th>
+                  <th class="px-6 py-4 text-sm font-medium text-gray-600 uppercase tracking-wider text-center">Visits</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-200">
+                <% if (urls) { %>
+                  <% urls.forEach(function(url) { %>
+                    <tr>
+                      <td class="px-6 py-4 whitespace-nowrap">
+                        <a href="/<%= url.shortID %>" class="text-indigo-600 hover:text-indigo-800 font-medium">
+                          <%= url.shortID %>
+                        </a>
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap max-w-sm truncate">
+                        <span class="text-gray-900"><%= url.originalID %></span>
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap text-center">
+                        <span class="text-gray-900 font-medium"><%= url.visitHistory.length %></span>
+                      </td>
+                    </tr>
+                  <% }) %>
+                <% } %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white">
+    <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 text-center">
+      <p class="text-gray-500">© 2025 Chhotu. All rights reserved.</p>
+    </div>
+  </footer>
+
+</div>
+</body>
 </html>

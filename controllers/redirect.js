@@ -4,6 +4,9 @@ const { setUser } = require("../services/auth");
 
 async function redirectTo(req, res) {
   const shortID = req.params.shortID;
+  if (!shortID) {
+    return res.redirect("/home");
+  }
   const entry = await shortURL.findOneAndUpdate(
     {
       shortID,
